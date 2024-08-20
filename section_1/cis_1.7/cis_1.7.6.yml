@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.deb12cis_gui }}
+  {{ if .Vars.deb12cis_level_1 }}
+    {{ if .Vars.deb12cis_rule_1_7_6 }}
+file:
+  00-media-automount_disable:
+    title: 1.7.6 | Ensure GDM automatic mounting of removable media is disabled
+    path: /etc/dconf/db/{ .Vars.deb12cis_dconf_db_name }.d/00-media-automount
+    exists: true
+    contents:
+    - '/^[org/gnome/desktop/media-handling]/'
+    - '/^automount=false/'
+    - '/^automount-open=false/'
+    - '!/^automount=true/'
+    - '!/^automount-open=true/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.6
+      CISv8: 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

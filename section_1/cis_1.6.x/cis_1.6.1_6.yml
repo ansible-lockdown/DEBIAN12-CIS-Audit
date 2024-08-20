@@ -1,0 +1,116 @@
+---
+{{ if .Vars.deb12cis_level_1 }}
+file:
+  {{ if .Vars.deb12cis_rule_1_6_1 }}
+  motd_config :
+    title: |
+      1.6.1 | Ensure message of the day is configured properly
+      1.6.4 | Ensure permissions on /etc/motd are configured
+    path: /etc/motd
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contents:
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.1
+      - 1.6.4
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+      - AC-3
+      - MP-2
+  {{ end }}
+  {{ if .Vars.deb12cis_rule_1_6_2 }}
+  etc_issue_config:
+    title: |
+      1.6.2 | Ensure local login warning banner is configured properly
+      1.6.5 | Ensure permissions on /etc/issue are configured
+    path: /etc/issue
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contents:
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux'
+    - '{{ .Vars.deb12cis_warning_banner }}'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.2
+      - 1.6.5
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+      - AC-3
+      - MP-2
+  {{ end }}
+  {{ if .Vars.deb12cis_rule_1_6_3 }}
+  etc_issue_net_config:
+    title: |
+      1.6.3 | Ensure remote login warning banner is configured properly
+      1.6.6 | Ensure permissions on /etc/issue.net are configured
+    path: /etc/issue.net
+    exists: true
+    mode: "0644"
+    owner: root
+    group: root
+    contents:
+    - '!/[Cc]ent[Oo][Ss].*/'
+    - '!/[Rr]hel.*/'
+    - '!/[Rr]ed[Hh]at.*/'
+    - '!/[Rr]ocky.*/'
+    - '!/[Aa]lma.*/'
+    - '!/x86_64/'
+    - '!/[Ll]inux'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.3
+      - 1.6.6
+      CISv8:
+      - 3.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-3
+      - CM-6
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

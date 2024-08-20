@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.deb12cis_level_2 }}
+  {{ if .Vars.deb12cis_rule_1_1_1_7 }}
+command:
+  udf:
+    title: 1.1.1.7 | Ensure udf kernel module is not available
+    exit-status: 0
+    exec: "modprobe -n -v udf | grep -E '(udf|install)'"
+    stdout:
+    - install /bin/true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.7
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-7
+  blacklist_udf:
+    title: 1.1.1.7 | Ensure udf kernel module is not available | blacklist
+    exit-status: 0
+    exec: grep udf /etc/modprobe.d/*.conf
+    stdout:
+      - '/blacklist udf/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.7
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

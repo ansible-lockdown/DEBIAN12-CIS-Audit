@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.deb12cis_gui }}
+  {{ if .Vars.deb12cis_level_1 }}
+    {{ if .Vars.deb12cis_rule_1_7_4 }}
+file:
+  00-screensaver:
+    title: 1.7.4 | Ensure GDM screen locks when the user is idle
+    path: /etc/dconf/db/{ .Vars.deb12cis_dconf_db_name }.d/00-screensaver
+    exists: true
+    contents:
+    - '/^[org/gnome/desktop/session]/'
+    - '/^idle-delay=uint32 (1|[1-9]|[1-7][0-9]{1,2}|900)$/'
+    - '!/^idle-delay=uint32 (90[1-9]|9[1-9][0-9]|1[0-9]{3,})$/'
+    - '/^lock-delay=uint32 [0-5]$/'
+    - '!/^lock-delay=uint32 ([6-9]|[0-9]{2,})$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.4
+      CISv8: 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

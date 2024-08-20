@@ -1,0 +1,18 @@
+{{ if .Vars.deb12cis_rule_7_2_5 }}
+command:
+  no_dup_gid:
+    title: 7.2.5 | Ensure no duplicate GIDs exist
+    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.5
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+{{ end }}

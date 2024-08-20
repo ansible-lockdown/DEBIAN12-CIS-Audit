@@ -1,0 +1,24 @@
+---
+{{ if .Vars.deb12cis_level_2 }}
+  {{ if not .Vars.deb12cis_ldap_clients_required }}
+    {{ if .Vars.deb12cis_rule_2_2_5 }}
+package:
+  ldap-clients:
+    title: 2.2.5 | Ensure LDAP client is not installed
+    installed: false
+    name: ldap-utils
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 2.2.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+    {{ end }}
+  {{ end }}
+{{ end }}

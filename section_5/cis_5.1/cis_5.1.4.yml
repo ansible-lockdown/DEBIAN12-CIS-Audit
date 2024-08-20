@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_5_1_4 }}
+command:
+  sshd_access_limited:
+    title: 5.1.4 | Ensure SSH access is limited | config
+    exec: grep -Ei "^(Allow|Deny)(Users|Groups)" /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - allowusers: {{ .Vars.deb12cis_sshd_allowusers }}
+    - allowgroups: {{ .Vars.deb12cis_sshd_allowgroups }}
+    - denyusers: {{ .Vars.deb12cis_sshd_denyusers }}
+    - denygroups: {{ .Vars.deb12cis_sshd_denygroups }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

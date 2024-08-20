@@ -1,0 +1,48 @@
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_7_1_10 }}
+file:
+  etc_security_opasswd_perms:
+    title: 7.1.10 | Ensure permissions on /etc/security/opasswd are configured
+    path: /etc/security/opasswd
+    exists: true
+    mode: "0600"
+    owner: root
+    group: root
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.1.10
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  etc_security_opasswd__old_perms:
+    title: 7.1.10 | Ensure permissions on /etc/security/opasswd are configured | old passwd
+    path: /etc/security/opasswd.old
+    exists:
+      or:
+      - true
+      - false
+    mode: "0600"
+    owner: root
+    group: root
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.1.10
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

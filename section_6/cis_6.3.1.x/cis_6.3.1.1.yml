@@ -1,0 +1,47 @@
+---
+
+{{ if .Vars.deb12cis_level_2 }}
+  {{ if .Vars.deb12cis_rule_6_3_1_1 }}
+package:
+  audit:
+    title: 6.3.1.1 | Ensure auditd is installed | auditd
+    installed: true
+    name: auditd
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.1.1
+      CISv8:
+      - 8.2
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-3
+      - AU-12
+      - SI-5
+  audispd-plugins:
+    title: 6.3.1.1 | Ensure auditd is installed | audispd-plugins
+    installed: true
+    name: audispd-plugins
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.1.1
+      CISv8:
+      - 8.2
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-3
+      - AU-12
+      - SI-5
+  {{ end }}
+{{ end }}

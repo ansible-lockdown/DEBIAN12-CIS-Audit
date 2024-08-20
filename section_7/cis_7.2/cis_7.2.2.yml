@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_7_2_2 }}
+command:
+  nopasswd_shadow:
+    title: 7.2.2 | Ensure /etc/shadow password fields are not empty
+    exec: cat /etc/shadow | cut -d ':' -f2
+    exit-status: 0
+    stdout:
+    - '/^(\*|\!|\$)/'
+    - '!/^$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - IA-5
+  {{ end }}
+{{ end }}

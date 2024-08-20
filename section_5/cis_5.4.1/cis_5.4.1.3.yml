@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_5_4_1_3 }}
+file:
+  login_defs_warn_age:
+    title: 5.4.1.3 | Ensure password expiration warning days is configured
+    path: /etc/login.defs
+    exists: true
+    contents:
+    - '/^PASS_WARN_AGE\s+{{ .Vars.deb12cis_pass_warn_age }}$/'
+    - '/^PASS_WARN_AGE\s+(7|[1-9][0-9]{1,3})$/'
+    - '!/^PASS_WARN_AGE\s+[1-6]$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.1.3
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+command:
+  check_users_MAX_DAYS:
+    title: 5.4.1.3 | Ensure password expiration warning days is configured | check_users
+    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,6"
+    exit-status: 0
+    stdout:
+    - '/^.*:([7-9]|[1-9][0-9]{1,})$/'
+    - '!/^.*:[1-6]$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.1.3
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_1_5_3 }}
+command:
+  system_coredump_conf:
+    title: 1.5.3 | Ensure core dump are restricted
+    exec: grep -Ps -- '^\h*\*\h+hard\h+core\h+0\b' /etc/security/limits.conf /etc/security/limits.d/*
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/^*.conf:\* hard core 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.3
+      CISv8:
+      - N/A
+      CISv8_IG1: N/A
+      CISv8_IG2: N/A
+      CISv8_IG3: N/A
+      NIST800-53R5: CM-6
+kernel-param:
+  fs.suid_dumpable_sysctl:
+    title: 1.5.3 | Ensure core dump are restricted
+    value: '0'
+    name: fs.suid_dumpable
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.3
+      CISv8:
+      - N/A
+      CISv8_IG1: N/A
+      CISv8_IG2: N/A
+      CISv8_IG3: N/A
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

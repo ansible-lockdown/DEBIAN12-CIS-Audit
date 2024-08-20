@@ -1,0 +1,51 @@
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_5_4_1_1 }}
+command:
+  login_defs_max_days:
+    title: 5.4.1.1 | Ensure password expiration is configured
+    exec: grep PASS_MAX_DAYS /etc/login.defs
+    exit-status: 0
+    stdout:
+    - '/^PASS_MAX_DAYS\s+{{ .Vars.deb12cis_pass_max_days }}/'
+    - '!/^PASS_MAX_DAYS\s+(36[6-9]|[4-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9])/'
+    - '!/^PASS_MAX_DAYS\s+-1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.1.1
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  check_user_expiry:
+    title: 5.4.1.1 | Ensure password expiration is configured | check_users
+    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,5"
+    exit-status: 0
+    stdout:
+    - '/^.*:([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[1-5][0-9]|36[0-5])$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.1.1
+      CISv8: 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

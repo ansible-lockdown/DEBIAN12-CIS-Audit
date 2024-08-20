@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.deb12cis_level_2 }}
+  {{ if .Vars.deb12cis_rule_6_3_1_4 }}
+command:
+  audit_backlog_default_grub:
+    title: 6.3.1.4 | Ensure audit_backlog_limit is sufficient | default
+    exec: grep audit_backlog /etc/default/grub
+    exit-status: 0
+    stdout:
+    - '/^GRUB_CMDLINE_LINUX_DEFAULT=.*\saudit_backlog_limit=(8192|819[3-9]|8[2-9]{,2}|9[0-9]{3,9}|[1-9]{5,9}).*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.1.4
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-12
+      - SI-5
+  {{ end }}
+{{ end }}

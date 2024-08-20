@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.deb12cis_gui }}
+  {{ if .Vars.deb12cis_level_1 }}
+    {{ if .Vars.deb12cis_rule_1_7_10 }}
+file:
+  /etc/gdm/custom.conf:
+    title: 1.7.10 | Ensure XDMCP is not enabled
+    path: /etc/gdm/custom.conf
+    exists: true
+    contents:
+    - '!/^Enable( |)=( |)true/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.10
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

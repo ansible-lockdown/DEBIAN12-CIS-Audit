@@ -1,0 +1,65 @@
+gossfile:
+# Section 1
+  {{ if .Vars.deb12cis_section1 }}
+  section_1/*/*.yml: {}
+  {{ end }}
+
+ # Section 2
+  {{ if .Vars.deb12cis_section2 }}
+  # Special Services
+  section_2/cis_2.1/*.yml: {}
+  # Client Service
+  section_2/cis_2.2/*.yml: {}
+  # Time services
+  section_2/cis_2.3/*.yml: {}
+  # scheduling services
+  section_2/cis_2.4/*.yml: {}
+  {{ end }}
+
+# Section 3
+  {{ if .Vars.deb12cis_section3 }}
+  section_3/cis_3.1/*.yml: {}
+  section_3/cis_3.2/*.yml: {}
+  section_3/cis_3.3/*.yml: {}
+  {{ end }}
+
+# Section 4
+  {{ if .Vars.deb12cis_section4 }}
+    # If ufw firewall
+    {{ if eq .Vars.deb12cis_firewall_package "ufw" }}
+  section_4/cis_4.1/*.yml: {}
+    {{ end }}
+    # If nftables firewall
+    {{ if eq .Vars.deb12cis_firewall_package "nftables" }}
+  section_4/cis_4.2/*.yml: {}
+    {{ end }}
+    # If iptables firewall
+    {{ if eq .Vars.deb12cis_firewall_package "iptables" }}
+  section_4/cis_4.3/*.yml: {}
+    {{ end }}
+  {{ end }}
+
+# Section 5
+  {{ if .Vars.deb12cis_section5 }}
+  section_5/*/*.yml: {}
+  {{ end }}
+
+# Section 6
+  {{ if .Vars.deb12cis_section6 }}
+  # Aide
+  section_6/cis_6.1/*.yml: {}
+  # Auditd and level 2
+  # Journald
+  section_6/cis_6.2.*/*.yml: {}
+  # Auditd
+    {{ if .Vars.deb12cis_level_2 }}
+      {{ if .Vars.deb12cis_auditd }}
+  section_6/cis_6.3.*/*.yml: {}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+# Section 7
+  {{ if .Vars.deb12cis_section7 }}
+  section_7/cis_7.*/*.yml: {}
+  {{ end }}
