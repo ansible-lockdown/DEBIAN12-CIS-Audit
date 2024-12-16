@@ -9,7 +9,6 @@ mount:
     exists: true
     opts:
     - noexec
-    {{ end }}
     meta:
       server: 1
       workstation: 1
