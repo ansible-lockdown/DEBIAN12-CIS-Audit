@@ -40,6 +40,8 @@ deb12cis_rule_1_1_1_5: true
 deb12cis_rule_1_1_1_6: true
 deb12cis_rule_1_1_1_7: true
 deb12cis_rule_1_1_1_8: true
+deb12cis_rule_1_1_1_9: true
+deb12cis_rule_1_1_1_10: true
 
 # Filesystems
 # /tmp
@@ -97,7 +99,6 @@ deb12cis_rule_1_4_2: true
 deb12cis_rule_1_5_1: true
 deb12cis_rule_1_5_2: true
 deb12cis_rule_1_5_3: true
-deb12cis_rule_1_5_4: true
 
 # Command line warning banners
 deb12cis_rule_1_6_1: true
