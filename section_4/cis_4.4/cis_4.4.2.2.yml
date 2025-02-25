@@ -1,11 +1,11 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if .Vars.deb12cis_rule_4_1_6 }}
+  {{ if .Vars.deb12cis_rule_4_4_2_2 }}
 command:
-  ufw_open_ports:
-    title: 4.1.6 | Ensure ufw firewall rules exist for all open ports | Manual
-    exec: echo "Manual - Please confirm firewall rules exist for open ports match site policies"
+  ipt_loopback:
+    title: 4.4.2.2 | Ensure iptables loopback traffic is configured | Manual
+    exec: echo "Manual - Please confirm iptables loopback connections are configured and matched site policy"
     exit-status: 0
     stdout:
     - '!/^Manual/'
@@ -13,7 +13,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.1.6
+      - 4.4.2.2
       CISv8:
       - 4.4
       - 4.5
@@ -21,6 +21,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
+      - CA-9
       - SC-7
   {{ end }}
 {{ end }}

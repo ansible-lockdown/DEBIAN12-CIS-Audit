@@ -1,11 +1,11 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if .Vars.deb12cis_rule_4_3_3_3 }}
+  {{ if .Vars.deb12cis_rule_4_3_4 }}
 command:
-  ipt6_conns_config:
-    title: 4.3.3.3 | Ensure ip6tables outbound and established connections are configured | Manual
-    exec: echo "Manual - Please confirm ip6tables outbound and connections are configured and matched site policy"
+  nft_tables:
+    title: 4.3.4 | Ensure a nftables table exists | Manual
+    exec: echo "Manual - Please confirm nfttables table exists and matched site policy"
     exit-status: 0
     stdout:
     - '!/^Manual/'
@@ -13,7 +13,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.3.3.3
+      - 4.3.4
       CISv8:
       - 4.4
       - 4.5

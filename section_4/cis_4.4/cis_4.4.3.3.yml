@@ -1,11 +1,11 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if .Vars.deb12cis_rule_4_3_3_4 }}
+  {{ if .Vars.deb12cis_rule_4_4_3_3 }}
 command:
-  ipt6_open_ports:
-    title: 4.3.3.4 | Ensure ip6tables firewall rules exist for all open ports | Manual
-    exec: echo "Manual - Please confirm ip6tables rules for open ports configured and matched site policy"
+  ipt6_conns_config:
+    title: 4.4.3.3 | Ensure ip6tables outbound and established connections are configured | Manual
+    exec: echo "Manual - Please confirm ip6tables outbound and connections are configured and matched site policy"
     exit-status: 0
     stdout:
     - '!/^Manual/'
@@ -13,7 +13,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.3.3.4
+      - 4.4.3.3
       CISv8:
       - 4.4
       - 4.5

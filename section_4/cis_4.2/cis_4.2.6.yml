@@ -3,9 +3,9 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_4_2_6 }}
 command:
-  nft_loopback:
-    title: 4.2.6 | Ensure nftables loopback traffic is configured | Manual
-    exec: echo "Manual - Please confirm nfttables loopback traffic configured and matched site policy"
+  ufw_open_ports:
+    title: 4.2.6 | Ensure ufw firewall rules exist for all open ports | Manual
+    exec: echo "Manual - Please confirm firewall rules exist for open ports match site policies"
     exit-status: 0
     stdout:
     - '!/^Manual/'
@@ -21,7 +21,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CA-9
       - SC-7
   {{ end }}
 {{ end }}

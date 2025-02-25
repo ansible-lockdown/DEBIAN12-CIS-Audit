@@ -2,10 +2,14 @@
 
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_4_1_1 }}
-package:
-  ufw:
-    title: 4.1.1 | Ensure ufw is installed
-    installed: true
+    {{ if eq .Vars.deb12cis_firewall_package "nftables" }}
+file:
+  firewalld_masked:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | firewalld masked
+    path: /etc/systemd/system/firewalld.service
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
     meta:
       server: 1
       workstation: 1
@@ -13,15 +17,144 @@ package:
       - 4.1.1
       CISv8:
       - 4.4
-      - 4.5
+      - 4.8
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      - NA
+service:
+  firewalld_stopped:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | firewalld service stopped
+    name: firewalld
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  nftables_stopped:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | nftables running
+    name: nftables
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  iptables_stopped:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | iptables running
+    name: iptables
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  {{ end }}
+  {{ if eq .Vars.deb12cis_firewall_package "firewalld" }}
+file:
+  nftables_masked:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | nftables masked
+    path: /etc/systemd/system/nftables.service
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+service:
+  firewalld_started:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | firewalld running and enabled
+    name: firewalld
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  nftables_stopped:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | nftables stopped
+    name: nftables
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+  iptables_stopped:
+    title: 4.1.1 | Ensure a single firewall configuration utility is in use | iptables running
+    name: iptables
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      CISv8:
+      - 4.4
+      - 4.8
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - NA
+    {{ end }}
   {{ end }}
 {{ end }}

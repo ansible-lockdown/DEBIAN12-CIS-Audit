@@ -3,8 +3,8 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_4_2_1 }}
 package:
-  nftables:
-    title: 4.2.1 | Ensure nftables is installed
+  ufw:
+    title: 4.2.1 | Ensure ufw is installed
     installed: true
     meta:
       server: 1
@@ -18,6 +18,10 @@ package:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - SC-7
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

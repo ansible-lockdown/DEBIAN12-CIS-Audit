@@ -1,16 +1,17 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if .Vars.deb12cis_rule_4_3_1_1 }}
-package:
-  iptables:
-    title: 4.3.1.1 | Ensure iptables packages are installed | iptables pkg
-    installed: true
+  {{ if .Vars.deb12cis_rule_4_3_10}}
+file:
+  nftable_perm:
+    title: 4.3.10 | Ensure nftables rules are permanent | conf file exists
+    path: /etc/nftables.conf
+    exists: true
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.3.1.1
+      - 4.3.10
       CISv8:
       - 4.4
       - 4.5
@@ -20,14 +21,18 @@ package:
       NIST800-53R5:
       - CA-9
       - SC-7
-  iptables-persistent:
-    title: 4.3.1.1 | Ensure iptables packages are installed | iptables-persistent pkg
-    installed: true
+command:
+  nft_rules:
+    title: 4.3.10 | Ensure nftables rules are permanent | conf file exists
+    exec: echo "Manual - Please review nfttables configuration and matches site policy"
+    exit-status: 0
+    stdout:
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.3.1.1
+      - 4.3.10
       CISv8:
       - 4.4
       - 4.5

@@ -3,12 +3,12 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_4_2_7 }}
 command:
-  nft_conns:
-    title: 4.2.7 | Ensure nftables outbound and established connections are configured | Manual
-    exec: echo "Manual - Please confirm nfttables connections are configured and matched site policy"
+  ufw_def_deny:
+    title: 4.2.7 | Ensure ufw default deny firewall policy
+    exec: 'ufw status verbose | grep Default:'
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    - '/^Default: deny \(incoming\), deny \(outgoing\), disabled \(routed\)/'
     meta:
       server: 1
       workstation: 1
@@ -21,7 +21,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5:
-      - CA-9
       - SC-7
   {{ end }}
 {{ end }}
