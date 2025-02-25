@@ -199,16 +199,10 @@ deb12cis_rule_3_3_9: true
 deb12cis_rule_3_3_10: true
 deb12cis_rule_3_3_11: true
 
-## Section 4 Host Based Firewall
-# 4.1 Configure UncomplicatedFirewall
+# Section 4 Firewalls
+### Section 4 Host Based Firewall
 deb12cis_rule_4_1_1: true
-deb12cis_rule_4_1_2: true
-deb12cis_rule_4_1_3: true
-deb12cis_rule_4_1_4: true
-deb12cis_rule_4_1_5: true
-deb12cis_rule_4_1_6: true
-deb12cis_rule_4_1_7: true
-# 4.2 Configure nftables
+# 4.1 Configure UncomplicatedFirewall
 deb12cis_rule_4_2_1: true
 deb12cis_rule_4_2_2: true
 deb12cis_rule_4_2_3: true
@@ -216,24 +210,31 @@ deb12cis_rule_4_2_4: true
 deb12cis_rule_4_2_5: true
 deb12cis_rule_4_2_6: true
 deb12cis_rule_4_2_7: true
-deb12cis_rule_4_2_8: true
-deb12cis_rule_4_2_9: true
-deb12cis_rule_4_2_10: true
+# 4.3 Configure nftables
+deb12cis_rule_4_3_1: true
+deb12cis_rule_4_3_2: true
+deb12cis_rule_4_3_3: true
+deb12cis_rule_4_3_4: true
+deb12cis_rule_4_3_5: true
+deb12cis_rule_4_3_6: true
+deb12cis_rule_4_3_7: true
+deb12cis_rule_4_3_8: true
+deb12cis_rule_4_3_9: true
+deb12cis_rule_4_3_10: true
 # Configure iptables software
-deb12cis_rule_4_3_1_1: true
-deb12cis_rule_4_3_1_2: true
-deb12cis_rule_4_3_1_3: true
-
+deb12cis_rule_4_4_1_1: true
+deb12cis_rule_4_4_1_2: true
+deb12cis_rule_4_4_1_3: true
 # Configure IPv4 iptables
-deb12cis_rule_4_3_2_1: true
-deb12cis_rule_4_3_2_2: true
-deb12cis_rule_4_3_2_3: true
-deb12cis_rule_4_3_2_4: true
+deb12cis_rule_4_4_2_1: true
+deb12cis_rule_4_4_2_2: true
+deb12cis_rule_4_4_2_3: true
+deb12cis_rule_4_4_2_4: true
 # Configure IPv5 iptables
-deb12cis_rule_4_3_3_1: true
-deb12cis_rule_4_3_3_2: true
-deb12cis_rule_4_3_3_3: true
-deb12cis_rule_4_3_3_4: true
+deb12cis_rule_4_4_3_1: true
+deb12cis_rule_4_4_3_2: true
+deb12cis_rule_4_4_3_3: true
+deb12cis_rule_4_4_3_4: true
 
 ## Section 5 Access Control
 # 5.1 Configure SSH Server
@@ -321,71 +322,89 @@ deb12cis_rule_5_4_3_1: true
 deb12cis_rule_5_4_3_2: true
 deb12cis_rule_5_4_3_3: true
 
-## Section 6
-# 6.1 Configure Filesystem Integrity Checking
-deb12cis_rule_6_1_1: true
-deb12cis_rule_6_1_2: true
+# Section 6 Logging and Auditing
 
-# 6.2.1.1 Configure systemd-journald service
-deb12cis_rule_6_2_1_1_1: true
-deb12cis_rule_6_2_1_1_2: true
-deb12cis_rule_6_2_1_1_3: true
-deb12cis_rule_6_2_1_1_4: true
-deb12cis_rule_6_2_1_1_5: true
-deb12cis_rule_6_2_1_1_6: true
-# 6.2.1.2 Configure systemd-journald service
-deb12cis_rule_6_2_1_2_1: true
-deb12cis_rule_6_2_1_2_2: true
-deb12cis_rule_6_2_1_2_3: true
-deb12cis_rule_6_2_1_2_4: true
-# 6.2.2 Configure Logfiles
+## 6.1.1.x Configure systemd-journald service
+deb12cis_rule_6_1_1_1: true
+deb12cis_rule_6_1_1_2: true
+deb12cis_rule_6_1_1_3: true
+deb12cis_rule_6_1_1_4: true
+
+## 6.1.2.1.x Configure journald
+deb12cis_rule_6_1_2_1_1: true
+deb12cis_rule_6_1_2_1_2: true
+deb12cis_rule_6_1_2_1_3: true
+deb12cis_rule_6_1_2_1_4: true
+deb12cis_rule_6_1_2_2: true
+deb12cis_rule_6_1_2_3: true
+deb12cis_rule_6_1_2_4: true
+
+## 6.1.3.x Configure rsyslog
+deb12cis_rule_6_1_3_1: true
+deb12cis_rule_6_1_3_2: true
+deb12cis_rule_6_1_3_3: true
+deb12cis_rule_6_1_3_4: true
+deb12cis_rule_6_1_3_5: true
+deb12cis_rule_6_1_3_6: true
+deb12cis_rule_6_1_3_7: true
+deb12cis_rule_6_1_3_8: true
+
+## 6.2.2 Configure Logfiles
+deb12cis_rule_6_1_4_1: true
+
+## 6.2 Configure Auditing
+## 6.2.1 Configure auditd Service
+deb12cis_rule_6_2_1_1: true
+deb12cis_rule_6_2_1_2: true
+deb12cis_rule_6_2_1_3: true
+deb12cis_rule_6_2_1_4: true
+
+## 6.4.2 Configure Data Retention
 deb12cis_rule_6_2_2_1: true
-# 6.3.1 Configure auditd Service
-deb12cis_rule_6_3_1_1: true
-deb12cis_rule_6_3_1_2: true
-deb12cis_rule_6_3_1_3: true
-deb12cis_rule_6_3_1_4: true
-# 6.3.2 Configure data retention
-deb12cis_rule_6_3_2_1: true
-deb12cis_rule_6_3_2_2: true
-deb12cis_rule_6_3_2_3: true
-deb12cis_rule_6_3_2_4: true
-# 6.3.3 Configure auditd rules
-deb12cis_rule_6_3_3_1: true
-deb12cis_rule_6_3_3_2: true
-deb12cis_rule_6_3_3_3: true
-deb12cis_rule_6_3_3_4: true
-deb12cis_rule_6_3_3_5: true
-deb12cis_rule_6_3_3_6: true
-deb12cis_rule_6_3_3_7: true
-deb12cis_rule_6_3_3_8: true
-deb12cis_rule_6_3_3_9: true
-deb12cis_rule_6_3_3_10: true
-deb12cis_rule_6_3_3_11: true
-deb12cis_rule_6_3_3_12: true
-deb12cis_rule_6_3_3_13: true
-deb12cis_rule_6_3_3_14: true
-deb12cis_rule_6_3_3_15: true
-deb12cis_rule_6_3_3_16: true
-deb12cis_rule_6_3_3_17: true
-deb12cis_rule_6_3_3_18: true
-deb12cis_rule_6_3_3_19: true
-deb12cis_rule_6_3_3_20: true
-deb12cis_rule_6_3_3_21: true
-# 6.3.4 Configure audit file access
-deb12cis_rule_6_3_4_1: true
-deb12cis_rule_6_3_4_2: true
-deb12cis_rule_6_3_4_3: true
-deb12cis_rule_6_3_4_4: true
-deb12cis_rule_6_3_4_5: true
-deb12cis_rule_6_3_4_6: true
-deb12cis_rule_6_3_4_7: true
-deb12cis_rule_6_3_4_8: true
-deb12cis_rule_6_3_4_9: true
-deb12cis_rule_6_3_4_10: true
+deb12cis_rule_6_2_2_2: true
+deb12cis_rule_6_2_2_3: true
+deb12cis_rule_6_2_2_4: true
+## 6.2.3 Configure auditd Rules
+deb12cis_rule_6_2_3_1: true
+deb12cis_rule_6_2_3_2: true
+deb12cis_rule_6_2_3_3: true
+deb12cis_rule_6_2_3_4: true
+deb12cis_rule_6_2_3_5: true
+deb12cis_rule_6_2_3_6: true
+deb12cis_rule_6_2_3_7: true
+deb12cis_rule_6_2_3_8: true
+deb12cis_rule_6_2_3_9: true
+deb12cis_rule_6_2_3_10: true
+deb12cis_rule_6_2_3_11: true
+deb12cis_rule_6_2_3_12: true
+deb12cis_rule_6_2_3_13: true
+deb12cis_rule_6_2_3_14: true
+deb12cis_rule_6_2_3_15: true
+deb12cis_rule_6_2_3_16: true
+deb12cis_rule_6_2_3_17: true
+deb12cis_rule_6_2_3_18: true
+deb12cis_rule_6_2_3_19: true
+deb12cis_rule_6_2_3_20: true
+deb12cis_rule_6_2_3_21: true
+## 6.2.4 Configure auditd File Access
+deb12cis_rule_6_2_4_1: true
+deb12cis_rule_6_2_4_2: true
+deb12cis_rule_6_2_4_3: true
+deb12cis_rule_6_2_4_4: true
+deb12cis_rule_6_2_4_5: true
+deb12cis_rule_6_2_4_6: true
+deb12cis_rule_6_2_4_7: true
+deb12cis_rule_6_2_4_8: true
+deb12cis_rule_6_2_4_9: true
+deb12cis_rule_6_2_4_10: true
 
-## Section 7
-# 7.1 System File Permissions
+## 6.3.2 Configure Integrity Checking
+deb12cis_rule_6_3_1: true
+deb12cis_rule_6_3_2: true
+deb12cis_rule_6_3_3: true
+
+# Section 7 System Maintenance
+## 7.1 System File Permissions
 deb12cis_rule_7_1_1: true
 deb12cis_rule_7_1_2: true
 deb12cis_rule_7_1_3: true
@@ -399,7 +418,7 @@ deb12cis_rule_7_1_10: true
 deb12cis_rule_7_1_11: true
 deb12cis_rule_7_1_12: true
 deb12cis_rule_7_1_13: true
-# 7.2 Local User and Group Settings
+## 7.2 Local User and Group Settings
 deb12cis_rule_7_2_1: true
 deb12cis_rule_7_2_2: true
 deb12cis_rule_7_2_3: true
