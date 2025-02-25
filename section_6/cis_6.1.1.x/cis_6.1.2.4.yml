@@ -1,7 +1,8 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if .Vars.deb12cis_rule_6_1_2_4 }}
+  {{ if eq .Vars.deb12cis_syslog "journald"}}
+    {{ if .Vars.deb12cis_rule_6_1_2_4 }}
 command:
   storage_journald_conf:
     title: 6.1.2
@@ -25,5 +26,6 @@ command:
       NIST800-53R5:
       - AU-3
       - AU-12
+    {{ end }}
   {{ end }}
 {{ end }}

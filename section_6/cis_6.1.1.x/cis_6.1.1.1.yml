@@ -1,7 +1,8 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if .Vars.deb12cis_rule_6_1_1_1 }}
+  {{ if eq .Vars.deb12cis_syslog "journald"}}
+    {{ if .Vars.deb12cis_rule_6_1_1_1 }}
 service:
   systemd-journald:
     title: 6.1.1.1 | Ensure journald service is enabled and active
@@ -20,5 +21,6 @@ service:
       - AU-2
       - AU-7
       - AU-12
+    {{ end }}
   {{ end }}
 {{ end }}
