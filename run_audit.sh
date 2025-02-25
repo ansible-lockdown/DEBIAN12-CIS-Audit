@@ -18,14 +18,15 @@
 # December 2023 Added goss version and testing
 # April 2024    Updating of OS discovery to work for all supported OSs
 # August 2024   Improve failure capture
+# January 2025  Added Suse OS discovery
 
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
 # Goss benchmark variables (these should not need changing unless new release)
 BENCHMARK=CIS # Benchmark Name aligns to the audit
-BENCHMARK_VER=1.0.1
-BENCHMARK_OS=DEBIAN12
+BENCHMARK_VER=1.1.0
+BENCHMARK_OS=DEBIAN
 
 # Goss host Variables
 AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
@@ -89,6 +90,9 @@ elif [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
   os_vendor="RHEL"
 else
   os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print toupper($1)}')"
+  if [ "${os_vendor}" = "OPENSUSE" ]; then
+   os_vendor="SUSE"
+  fi
 fi
 
 os_maj_ver="$(grep -w VERSION_ID= /etc/os-release | awk -F\" '{print $2}' | cut -d '.' -f1)"

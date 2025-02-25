@@ -2,7 +2,7 @@
 
 ## Overview
 
-### Based on CIS Benchmark for Debian 12 LTS Benchmark v1.0.0
+### Based on CIS Benchmark for Debian 12 LTS Benchmark v1.1.0
 
 [Centre For Internet Security]
 
@@ -28,7 +28,7 @@ The listed variable for every control/benchmark can be turned on/off or section
 
 ## Requirements
 
-goss >= 0.4.4
+goss >= 0.4.7
 root privileges
 
 ## Branches
