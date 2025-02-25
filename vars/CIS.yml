@@ -153,18 +153,18 @@ deb12cis_rule_2_2_4: true
 deb12cis_rule_2_2_5: true
 deb12cis_rule_2_2_6: true
 
-## Configure Time Synchronization
+## Ensure time synchronization is in use
 deb12cis_rule_2_3_1_1: true
-# timesyncd
+# Configure systemd-timesyncd
 deb12cis_rule_2_3_2_1: true
 deb12cis_rule_2_3_2_2: true
-# chrony
+# Configure Chrony
 deb12cis_rule_2_3_3_1: true
 deb12cis_rule_2_3_3_2: true
 deb12cis_rule_2_3_3_3: true
 
-## Job Schedulers
-### cron
+# 2.4 Job Schedulers
+# 2.4.1 Configure Cron
 deb12cis_rule_2_4_1_1: true
 deb12cis_rule_2_4_1_2: true
 deb12cis_rule_2_4_1_3: true
@@ -173,7 +173,7 @@ deb12cis_rule_2_4_1_5: true
 deb12cis_rule_2_4_1_6: true
 deb12cis_rule_2_4_1_7: true
 deb12cis_rule_2_4_1_8: true
-### at
+# Configure At
 deb12cis_rule_2_4_2_1: true
 
 # Section 3 Network

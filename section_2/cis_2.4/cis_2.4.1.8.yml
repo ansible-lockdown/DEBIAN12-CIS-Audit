@@ -4,7 +4,7 @@
   {{ if .Vars.deb12cis_rule_2_4_1_8 }}
 file:
   cron_deny_users:
-    title: 2.4.1.8 | Ensure cron is restricted to authorized users
+    title: 2.4.1.8 | Ensure crontab is restricted to authorized users
     path: /etc/cron.deny
     exists: false
     meta:
@@ -20,7 +20,7 @@ file:
       - AC-3
       - MP-2
   cron_allow_users:
-    title: 2.4.1.8 | Ensure cron is restricted to authorized users
+    title: 2.4.1.8 | Ensure crontab is restricted to authorized users
     path: /etc/cron.allow
     exists: true
     owner: root
