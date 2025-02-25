@@ -5,8 +5,7 @@
     {{ if .Vars.deb12cis_rule_6_1_2_4 }}
 command:
   storage_journald_conf:
-    title: 6.1.2
-    .4 | Ensure journald Storage is configured
+    title: 6.1.2.4 | Ensure journald Storage is configured
     exec: grep -i Storage= /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
     exit-status:
       or:
