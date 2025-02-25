@@ -1,4 +1,5 @@
 ---
+
 {{ if .Vars.deb12cis_level_1 }}
 file:
   {{ if .Vars.deb12cis_rule_1_6_1 }}
@@ -86,7 +87,7 @@ file:
       - CM-6
   {{ end }}
   {{ if .Vars.deb12cis_rule_1_6_4 }}
-  motd_config :
+  motd_perms:
     title: 1.6.4 | Ensure permissions on /etc/motd are configured
     path: /etc/motd
     exists: true
@@ -108,7 +109,7 @@ file:
       - MP-2
   {{ end }}
   {{ if .Vars.deb12cis_rule_1_6_5 }}
-  etc_issue_config:
+  etc_issue_perms:
     title: 1.6.5 | Ensure permissions on /etc/issue are configured
     path: /etc/issue
     exists: true
@@ -130,7 +131,7 @@ file:
       - MP-2
   {{ end }}
   {{ if .Vars.deb12cis_rule_1_6_6 }}
-  etc_issue_net_config:
+  etc_issue_net_perms:
     title: 1.6.6 | Ensure permissions on /etc/issue.net are configured
     path: /etc/issue.net
     exists: true

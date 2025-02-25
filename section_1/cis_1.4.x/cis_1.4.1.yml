@@ -6,11 +6,10 @@
 file:
   grub_bootloader_passwd_live:
     title: 1.4.1 | Ensure bootloader password is set
-    path: /boot/grub/grub.conf
+    path: /boot/grub/grub.cfg
     exists: true
     contents:
-    - '/^set superusers=/'
-    - '/^password_pbkdf2'
+    - '/^set superusers/'
     meta:
       server: 1
       workstation: 1
@@ -28,8 +27,8 @@ command:
     exec: grep -E "superusers|pbkdf2" /etc/grub.d/*
     exit-status: 0
     stdout:
-    - '/^set superusers=/'
-    - '/password_pbkdf2'
+    - '/set superusers/'
+    - '/password_pbkdf2/'
     meta:
       server: 1
       workstation: 1
