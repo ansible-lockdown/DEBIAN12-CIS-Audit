@@ -8,7 +8,7 @@ command:
     exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc "%n_%U" $file; done
     exit-status: 0
     stdout:
-    - '/.*_root$/'
+    - '/.*_adm$/'
     meta:
       server: 2
       workstation: 2
