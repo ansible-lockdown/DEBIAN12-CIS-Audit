@@ -2,7 +2,7 @@
 
 {{ if eq .Vars.deb12cis_time_sync_tool "chrony" }}
   {{ if .Vars.deb12cis_level_1 }}
-    {{ if .Vars.deb12cis_rule_2_1_2_2 }}
+    {{ if .Vars.deb12cis_rule_2_3_3_2 }}
 file:
   chrony_user:
     title: 2.3.3.2 | Ensure chrony is running as user _chrony
