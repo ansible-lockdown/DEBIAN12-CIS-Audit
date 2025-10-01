@@ -3,9 +3,9 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_7_2_7 }}
 command:
-  no_dup_groupname:
-    title: 7.2.7 | Ensure no duplicate group names exist
-    exec: "cat /etc/group | cut -d: -f1 | uniq -d"
+  no_dup_username:
+    title: 7.2.7 | Ensure no duplicate user names exist
+    exec: "cat /etc/passwd | cut -d: -f1 | uniq -d"
     exit-status: 0
     stdout:
     - '!/./'
