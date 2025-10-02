@@ -4,9 +4,26 @@
   {{ if .Vars.run_heavy_tests }}
     {{ if .Vars.deb12cis_rule_7_2_9 }}
 command:
-  dot_netrc_perms:
-    title: 7.2.9 | Ensure local interactive user dot files access is configured
-    exec: 'find /home/  \( -name .netrc -o -name .rhost -o -name .forward \)'
+  home_dirs_exist:
+    title: 7.2.9 | Ensure all users' home directories exist | exist
+    exec: pwck -r | grep -Ev "journal|ircd" | grep "does not exist"
+    timeout: {{ .Vars.timeout_ms }}
+    exit-status: 1
+    stdout:
+    - '!/does not exist/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.9
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  home_dirs_owned:
+    title: 7.2.9 | Ensure all users' home directories exist | owned
+    exec: getent passwd {1000..60000} |  awk -F':' '{ print $1  " "  $6 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c "%U" "$dir"); if [ "$owner" != "$user" ]; then echo "home dir for $user owned by $owner"; fi; fi; done
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
@@ -20,12 +37,24 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
+      NIST800-53R5: NA
+  home_dirs_restrict:
+    title: 7.2.9 | Ensure all users' home directories exist | permissions
+    exec: for i in $(getent passwd {1000..60000} | awk '{split($0,a,":");print a[6]}'); do stat -c "%a %n" $i ; done
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '/^7(0|5)0\s/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.9
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
     {{ end }}
   {{ end }}
 {{ end }}
