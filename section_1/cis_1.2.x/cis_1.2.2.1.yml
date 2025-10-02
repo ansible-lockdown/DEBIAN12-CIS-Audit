@@ -8,9 +8,10 @@ command:
     title: 1.2.2.1 | Ensure updates, patches, and additional security software are installed
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
-    exec: apt update
+    exec: LC_ALL=C apt update | tail -1
     stdout:
-    - 'All packages are up to date'
+    - '!/^[1-9]{0,4}$ packages can be upgraded/'
+    - '/^All packages are up to date/'
     meta:
       server: 1
       workstation: 1
