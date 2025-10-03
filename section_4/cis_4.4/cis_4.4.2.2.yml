@@ -24,7 +24,7 @@ command:
       NIST800-53R5:
       - CA-9
       - SC-7
-   ipt_loopback_output:
+  ipt_loopback_output:
     title: 4.4.2.2 | Ensure iptables loopback traffic is configured | output
     exec: iptables -L OUTPUT -v -n
     exit-status: 0
