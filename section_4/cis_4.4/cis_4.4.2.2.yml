@@ -3,12 +3,33 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_4_4_2_2 }}
 command:
-  ipt_loopback:
-    title: 4.4.2.2 | Ensure iptables loopback traffic is configured | Manual
-    exec: echo "Manual - Please confirm iptables loopback connections are configured and matched site policy"
+  ipt_loopback_input:
+    title: 4.4.2.2 | Ensure iptables loopback traffic is configured | input
+    exec: iptables -L INPUT -v -n
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    - '/^\d*.*\d* ACCEPT\s+(all|0).*lo/'
+    - '/^\d*.*\d* DROP\s+(all|0).*127\.0\.0\.1\/8/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.4.2.2
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CA-9
+      - SC-7
+   ipt_loopback_output:
+    title: 4.4.2.2 | Ensure iptables loopback traffic is configured | output
+    exec: iptables -L OUTPUT -v -n
+    exit-status: 0
+    stdout:
+    - '/^\d*.*\d* ACCEPT\s+(all|0).*lo/'
     meta:
       server: 1
       workstation: 1
