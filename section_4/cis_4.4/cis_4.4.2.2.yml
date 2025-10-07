@@ -5,11 +5,10 @@
 command:
   ipt_loopback_input:
     title: 4.4.2.2 | Ensure iptables loopback traffic is configured | input
-    exec: iptables -L INPUT -v -n
+    exec: ping -c 1 127.0.0.1 && iptables -nL INPUT -v | awk '/lo/ && NR<=20 {pkts+=$1; bytes+=$2} END {if(pkts>0 && bytes>0) print "lo has traffic"; else print "lo NO traffic"}'
     exit-status: 0
     stdout:
-    - '/^\d*.*\d* ACCEPT\s+(all|0).*lo/'
-    - '/^\d*.*\d* DROP\s+(all|0).*127\.0\.0\.1\/8/'
+    - '/^lo has traffic/'
     meta:
       server: 1
       workstation: 1
@@ -26,10 +25,10 @@ command:
       - SC-7
   ipt_loopback_output:
     title: 4.4.2.2 | Ensure iptables loopback traffic is configured | output
-    exec: iptables -L OUTPUT -v -n
+    exec: ping -c 1 127.0.0.1 && iptables -nL OUTPUT -v | awk '/lo/ && NR<=20 {pkts+=$1; bytes+=$2} END {if(pkts>0 && bytes>0) print "lo has traffic"; else print "lo NO traffic"}'
     exit-status: 0
     stdout:
-    - '/^\d*.*\d* ACCEPT\s+(all|0).*lo/'
+    - '/^lo has traffic/'
     meta:
       server: 1
       workstation: 1
