@@ -3,12 +3,32 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_4_4_3_2 }}
 command:
-  ipt6_loopback:
-    title: 4.4.3.2 | Ensure ip6tables loopback traffic is configured | Manual
-    exec: echo "Manual - Please confirm ip6tables loopback connections are configured and matched site policy"
+  ipt6_loopback_input:
+    title: 4.4.3.2 | Ensure ip6tables loopback traffic is configured | input
+    exec: ping6 -c 1 ::1 && ip6tables -nL INPUT -v | awk '/lo/ && NR<=20 {pkts+=$1; bytes+=$2} END {if(pkts>0 && bytes>0) print "lo has traffic"; else print "lo NO traffic"}'
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    - '/^lo has traffic/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.4.3.2
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CA-9
+      - SC-7
+  ipt6_loopback_output:
+    title: 4.4.3.2 | Ensure ip6tables loopback traffic is configured | output
+    exec: ping6 -c 1 ::1 && ip6tables -nL OUTPUT -v | awk '/lo/ && NR<=20 {pkts+=$1; bytes+=$2} END {if(pkts>0 && bytes>0) print "lo has traffic"; else print "lo NO traffic"}'
+    exit-status: 0
+    stdout:
+    - '/^lo has traffic/'
     meta:
       server: 1
       workstation: 1
