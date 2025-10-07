@@ -6,10 +6,10 @@
 command:
   gpg_keys:
     title: 1.2.1.1 | Ensure GPG keys are configured | Manual
-    exit-status: 0
-    exec: echo "MANUAL - Ensure gpg keys match site policy"
+    exit-status: 1
+    exec: apt update 2>&1 | grep -E "NO_PUBKEY"
     stdout:
-    - '!/MANUAL/'
+    - '!/NO_PUBKEY/'
     meta:
       server: 1
       workstation: 1
