@@ -1,7 +1,7 @@
 ## metadata for benchmark
 
 ## metadata for Audit benchmark
-benchmark_version: '1.0.1'
+benchmark_version: '1.1.0'
 
 # If run via script this is discovered and set
 host_os_distribution: Debian

@@ -1,8 +1,11 @@
-{{ if .Vars.deb12cis_rule_7_2_5 }}
+---
+
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_7_2_5 }}
 command:
-  no_dup_gid:
-    title: 7.2.5 | Ensure no duplicate GIDs exist
-    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
+  no_dup_uid:
+    title: 7.2.5 | Ensure no duplicate UIDs exist
+    exec: "cat /etc/passwd | cut -d: -f3 | uniq -d"
     exit-status: 0
     stdout:
     - '!/./'
@@ -15,4 +18,11 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
 {{ end }}
