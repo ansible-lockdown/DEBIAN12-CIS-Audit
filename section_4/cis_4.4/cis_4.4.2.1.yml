@@ -4,11 +4,13 @@
   {{ if .Vars.deb12cis_rule_4_4_2_1 }}
 command:
   ipt_def_deny:
-    title: 4.4.2.1 | Ensure iptables default deny firewall policy | Manual
-    exec: echo "Manual - Please confirm iptables default denies are configured and matched site policy"
+    title: 4.4.2.1 | Ensure iptables default deny firewall policy
+    exec: iptables -L
     exit-status: 0
     stdout:
-    - '!/^Manual/'
+    - '/^Chain INPUT \(policy (DROP|REJECT)\)/'
+    - '/^Chain FORWARD \(policy (DROP|REJECT)\)/'
+    - '/^Chain OUTPUT \(policy (DROP|REJECT)\)/'
     meta:
       server: 1
       workstation: 1

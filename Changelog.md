@@ -7,6 +7,13 @@
 PR #9 many thanks to @aderumier fixing 7.2.4-10 numbering
 max-concurrent option added and run audit script updated
 
+Thanks to @aderumier
+- #11
+- #12
+- #13
+- #14
+- #15
+
 ## Aug25
 fixed time pool naming
 updated benchmark
