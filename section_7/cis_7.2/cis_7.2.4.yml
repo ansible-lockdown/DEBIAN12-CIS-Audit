@@ -1,3 +1,4 @@
+
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
