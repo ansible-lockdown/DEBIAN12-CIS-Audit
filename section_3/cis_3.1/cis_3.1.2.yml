@@ -3,37 +3,24 @@
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_3_1_2 }}
 command:
-  wireless:
+  wireless_disabled:
     title: 3.1.2 | Ensure wireless interfaces are disabled | disabled
     exit-status: 0
-    exec: "modprobe -n -v wireless | grep -E '(wireless|install)'"
+    exec: "find /sys/class/net/*/wireless -type d 2>/dev/null | sed 's|/wireless$||' | while read iface; do cat \"$iface/operstate\" 2>/dev/null; done | grep -qv '^down$' && echo FAIL || echo OK"
     stdout:
-    - install /bin/true
+    - '/^OK/'
+    - '!/^FAIL/'
     meta:
       server: 1
-      workstation: 1
-      CIS_ID: 3.1.2
+      workstation: 2
+      CIS_ID:
+      - 3.1.2
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      NIST800-53R5: CM-7
-  blacklist_wireless:
-    title: 3.1.1 | Ensure wireless interfaces are disabled | blacklist
-    exit-status: 0
-    exec: grep wireless /etc/modprobe.d/*.conf
-    stdout:
-      - '/blacklist wireless/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID: 3.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: CM-7
+      NIST800-53R5:
+      - CM-7
   {{ end }}
 {{ end }}

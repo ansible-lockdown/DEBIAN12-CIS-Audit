@@ -1,4 +1,6 @@
-{{ if .Vars.deb12cis_rule_7_2_6 }}
+---
+{{ if .Vars.deb12cis_level_1 }}
+  {{ if .Vars.deb12cis_rule_7_2_6 }}
 command:
   no_dup_gid:
     title: 7.2.6 | Ensure no duplicate GIDs exist
@@ -15,4 +17,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}
