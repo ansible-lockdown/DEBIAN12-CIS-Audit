@@ -7,7 +7,7 @@ file:
     title: 7.1.5 | Ensure permissions on /etc/shadow are configured
     path: /etc/shadow
     exists: true
-    mode: "0000"
+    mode: u=rw,g=r,o=
     owner: root
     group: root
     meta:
