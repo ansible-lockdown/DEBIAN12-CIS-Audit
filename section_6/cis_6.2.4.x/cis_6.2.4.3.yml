@@ -4,7 +4,7 @@
   {{ if .Vars.deb12cis_rule_6_2_4_3 }}
 command:
   audit_logfile_owner:
-    title: 6.2.4.3 | Ensure only authorized users own audit log files
+    title: 6.2.4.3 | Ensure audit log files group owner is configured
     exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc "%n_%U" $file; done
     exit-status: 0
     stdout:
