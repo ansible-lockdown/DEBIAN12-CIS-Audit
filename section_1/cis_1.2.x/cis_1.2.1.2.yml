@@ -5,7 +5,7 @@
     {{ if .Vars.deb12cis_rule_1_2_1_2 }}
 command:
   repos_configured:
-    title: 1.2.1.2 | Ensure Package manager repositories are configured | Manual
+    title: 1.2.1.2 | Ensure package manager repositories are configured | | Manual
     exit-status: 0
     exec: echo "MANUAL - Ensure repos match site policy"
     stdout:

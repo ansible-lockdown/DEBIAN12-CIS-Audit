@@ -535,11 +535,11 @@ deb12cis_time_pool_name: time.nist.gov
 # of the time synchronization mechanism you are using.
 deb12cis_time_servers:
 - name: time-a-g.nist.gov
-  options: iburst
+  server_options: iburst
 - name: time-b-g.nist.gov
-  options: iburst
+  server_options: iburst
 - name: time-c-g.nist.gov
-  options: iburst
+  server_options: iburst
 
 # Section 3
 ## Control 3.1.1 - Ensure system is checked to determine if IPv6 is enabled
@@ -552,7 +552,7 @@ deb12cis_ipv6_disable: grub
 # Options are
 # true to leave installed if exists not changes take place
 # false - this removes the package
-# mask - if a dependancy for product so cannot be removed
+# mask - if a dependency for product so cannot be removed
 deb12cis_bluetooth_service: false
 deb12cis_bluetooth_mask: false
 
@@ -631,7 +631,7 @@ deb12cis_ssh_weak_kex:
 
 deb12cis_sshd_config_file: /etc/ssh/sshd_config
 
-## 5.1.4 Note the following to understand precedence and layout , comma seperated
+## 5.1.4 Note the following to understand precedence and layout , comma separated
 deb12cis_sshd_allowusers: vagrant
 deb12cis_sshd_allowgroups:
 deb12cis_sshd_denyusers: nobody

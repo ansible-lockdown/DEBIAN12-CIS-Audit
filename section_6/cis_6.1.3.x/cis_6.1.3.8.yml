@@ -5,7 +5,7 @@
   {{ if .Vars.deb12cis_rule_6_1_3_8 }}
 command:
   rsyslog_logrotate:
-    title: 6.1.3.8 | Ensure rsyslog logrotate is configured | Manual Check
+    title: 6.1.3.8 | Ensure logrotate is configured | | Manual Check
     exec: echo "Manual | please check file rotaton matches site policy - logrotate"
     exit-status: 0
     stdout:

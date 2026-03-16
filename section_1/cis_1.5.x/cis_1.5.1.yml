@@ -4,7 +4,7 @@
   {{ if .Vars.deb12cis_rule_1_5_1 }}
 kernel-param:
   address_space_random:
-    title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | running
+    title: 1.5.1 | Ensure address space layout randomization is enabled | | running
     name: kernel.randomize_va_space
     value: '2'
     meta:
@@ -20,7 +20,7 @@ kernel-param:
       NIST800-53R5: CM-6
 command:
   aslr_enabled_2:
-    title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | conf
+    title: 1.5.1 | Ensure address space layout randomization is enabled | | conf
     exit-status: 0
     exec: 'grep "kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/*'
     stdout:

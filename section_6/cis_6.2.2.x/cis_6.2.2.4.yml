@@ -4,7 +4,7 @@
   {{ if .Vars.deb12cis_rule_6_2_2_4 }}
 command:
   logs_low_space_auditd_conf:
-    title: 6.2.2.4 | Ensure system is disabled when audit logs are full
+    title: 6.2.2.4 | Ensure system warns when audit logs are low on space
     exec: grep space_left_action /etc/audit/auditd.conf
     exit-status: 0
     stdout:
