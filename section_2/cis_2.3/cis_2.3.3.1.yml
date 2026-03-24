@@ -9,7 +9,7 @@ file:
     path: /etc/chrony/sources.d/pool.sources
     exists: true
     contents:
-    {{- range .Vars.deb12cis_time_pool_name }}
+    {{- range .Vars.deb12cis_time_pool }}
     - '/^pool {{ .name }} {{ .pool_options }}/'
     {{ end }}
     meta:
