@@ -8,12 +8,7 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    {{ range .Vars.deb12cis_ssh_strong_kex }}
-    - '/^KexAlgorithms.*{{ . }}/'
-    {{ end }}
-    {{ range .Vars.deb12cis_ssh_weak_kex }}
-    - '!/^KexAlgorithms.*!{{ . }}/'
-    {{ end }}
+    - '/^KexAlgorithms {{ .Vars.deb12cis_sshd_kex_algorithms }}/'
     meta:
       server: 1
       workstation: 1
