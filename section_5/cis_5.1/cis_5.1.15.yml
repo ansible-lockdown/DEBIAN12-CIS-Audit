@@ -8,12 +8,7 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    {{ range .Vars.deb12cis_ssh_strong_macs }}
-    - '/^MACs.*{{ . }}/'
-    {{ end }}
-    {{ range .Vars.deb12cis_ssh_weak_macs }}
-    - '!/^MACs.*{{ . }}/'
-    {{ end }}
+    - '/^MACs {{ .Vars.deb12cis_sshd_macs }}/'
     meta:
       server: 1
       workstation: 1

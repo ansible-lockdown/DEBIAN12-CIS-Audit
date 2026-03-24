@@ -11,10 +11,10 @@ command:
       - 0
       - 1
     stdout:
-    - allowusers: {{ .Vars.deb12cis_sshd_allowusers }}
-    - allowgroups: {{ .Vars.deb12cis_sshd_allowgroups }}
-    - denyusers: {{ .Vars.deb12cis_sshd_denyusers }}
-    - denygroups: {{ .Vars.deb12cis_sshd_denygroups }}
+    - allowusers: {{ .Vars.deb12cis_sshd_allow_users }}
+    - allowgroups: {{ .Vars.deb12cis_sshd_allow_groups }}
+    - denyusers: {{ .Vars.deb12cis_sshd_deny_users }}
+    - denygroups: {{ .Vars.deb12cis_sshd_deny_groups }}
     meta:
       server: 1
       workstation: 1
