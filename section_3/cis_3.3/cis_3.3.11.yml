@@ -5,7 +5,7 @@
     {{ if .Vars.deb12cis_rule_3_3_11 }}
 kernel-param:
   net.ipv6.conf.all.accept_ra:
-    title: 3.3.11 | Ensure IPv6 router advertisements are not accepted
+    title: 3.3.11 | Ensure ipv6 router advertisements are not accepted
     value: '0'
     name: net.ipv6.conf.all.accept_ra
     meta:
@@ -24,7 +24,7 @@ kernel-param:
       - CM-7
       - IA-5
   net.ipv6.conf.default.accept_ra:
-    title: 3.3.11 | Ensure IPv6 router advertisements are not accepted
+    title: 3.3.11 | Ensure ipv6 router advertisements are not accepted
     value: '0'
     name: net.ipv6.conf.default.accept_ra
     meta:
@@ -44,7 +44,7 @@ kernel-param:
       - IA-5
 command:
   ipv6_all_accept_ra:
-    title: 3.3.11 | Ensure IPv6 router advertisements are not accepted | live ipv6 all
+    title: 3.3.11 | Ensure ipv6 router advertisements are not accepted | | live ipv6 all
     exec: grep net.ipv6.conf.all.accept_ra /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
     exit-status:
       or:
@@ -69,7 +69,7 @@ command:
       - CM-7
       - IA-5
   ipv6_default_accept_ra:
-    title: 3.3.11 | Ensure IPv6 router advertisements are not accepted | live ipv6 default
+    title: 3.3.11 | Ensure ipv6 router advertisements are not accepted | | live ipv6 default
     exec: grep net.ipv6.conf.default.accept_ra /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
     exit-status:
       or:

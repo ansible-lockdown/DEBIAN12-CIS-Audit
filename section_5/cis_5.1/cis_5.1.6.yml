@@ -8,12 +8,7 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    {{ range .Vars.deb12cis_ssh_strong_ciphers }}
-    - '/^Ciphers.*{{ . }}/'
-    {{ end }}
-    {{ range .Vars.deb12cis_ssh_weak_ciphers }}
-    - '!/^Ciphers.*{{ . }}/'
-    {{ end }}
+    - '/^Ciphers {{ .Vars.deb12cis_sshd_ciphers }}/'
     meta:
       server: 1
       workstation: 1

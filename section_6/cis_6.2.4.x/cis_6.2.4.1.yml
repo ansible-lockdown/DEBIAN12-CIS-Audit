@@ -4,7 +4,7 @@
   {{ if .Vars.deb12cis_rule_6_2_4_1 }}
 command:
   audit_logfile_dir_perms:
-    title: 6.2.4.1 | Ensure the audit log file directory mode is configured
+    title: 6.2.4.1 | Ensure audit log files mode is configured
     exec: for dir in `dirname \`grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'\``; do stat -Lc " %n_%a" $dir; done
     exit-status: 0
     stdout:

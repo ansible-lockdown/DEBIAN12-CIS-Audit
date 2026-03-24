@@ -2,7 +2,7 @@
 
 {{ if .Vars.deb12cis_level_1 }}
   {{ if .Vars.deb12cis_rule_6_1_2_1_4 }}
-    {{ if not .Vars.deb12cis_is_syslog_server }}
+    {{ if not .Vars.deb12cis_system_is_log_server }}
 service:
   systemd-journal-remote.service:
     title: 6.1.2.1.4 | Ensure systemd-journal-remote service is not in use | service
@@ -24,14 +24,14 @@ service:
       - AU-7
       - AU-12
   systemd-journal-remote.socket:
-    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | socket
+    title: 6.1.2.1.4 | Ensure systemd-journal-remote service is not in use | socket
     running: false
     enabled: false
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 6.2.1.2.4
+      - 6.1.2.1.4
       CISv8:
       - 4.8
       - 8.2
@@ -44,7 +44,7 @@ service:
       - AU-12
 command:
   journald_service_masked:
-    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | service masked
+    title: 6.1.2.1.4 | Ensure systemd-journal-remote service is not in use | service masked
     exec: systemctl is-enabled systemd-journal-remote.socket
     exit-status: 1
     stdout:
@@ -53,7 +53,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 6.2.1.2.4
+      - 6.1.2.1.4
       CISv8:
       - 4.8
       - 8.2
@@ -65,7 +65,7 @@ command:
       - AU-7
       - AU-12
   journald_socket_masked:
-    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | socket masked
+    title: 6.1.2.1.4 | Ensure systemd-journal-remote service is not in use | socket masked
     exec: systemctl is-enabled systemd-journal-remote.socket
     exit-status: 1
     stdout:
@@ -74,7 +74,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 6.2.1.2.4
+      - 6.1.2.1.4
       CISv8:
       - 4.8
       - 8.2

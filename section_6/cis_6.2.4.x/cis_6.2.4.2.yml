@@ -4,7 +4,7 @@
 {{ if .Vars.deb12cis_rule_6_2_4_2 }}
 command:
   audit_logfile_perms:
-    title: 6.2.4.2 | Ensure audit log files mode is configured
+    title: 6.2.4.2 | Ensure audit log files owner is configured
     exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc "%n_%a" $file; done
     exit-status: 0
     stdout:
