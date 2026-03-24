@@ -1,11 +1,11 @@
 ---
 
 {{ if .Vars.deb12cis_level_1 }}
-  {{ if eq .Vars.deb12cis_syslog "journald"}}
+  {{ if eq .Vars.deb12cis_syslog_type "journald"}}
     {{ if .Vars.deb12cis_rule_6_1_2_3 }}
 command:
   compress_journald_conf:
-    title: 6.1.2.3 | Ensure journald is configured to compress large log files
+    title: 6.1.2.3 | Ensure journald Compress is configured
     exec: grep -i Compress= /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
     exit-status:
       or:

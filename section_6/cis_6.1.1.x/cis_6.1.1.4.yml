@@ -5,10 +5,10 @@
 service:
   onesyslog:
     title: 6.1.1.4 | Ensure only one logging system is in use
-    {{ if eq .Vars.deb12cis_syslog "journald"}}
+    {{ if eq .Vars.deb12cis_syslog_type "journald"}}
     name: rsyslog
     {{ end }}
-    {{ if eq .Vars.deb12cis_syslog "rsyslog"}}
+    {{ if eq .Vars.deb12cis_syslog_type "rsyslog"}}
     name: journald
     {{ end }}
     running: false

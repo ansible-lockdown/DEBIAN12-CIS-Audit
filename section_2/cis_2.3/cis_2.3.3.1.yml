@@ -9,8 +9,8 @@ file:
     path: /etc/chrony/sources.d/pool.sources
     exists: true
     contents:
-    {{- range .Vars.deb12cis_time_pool_name }}
-    - '/^pool {{ .name }} {{ .options }}/'
+    {{- range .Vars.deb12cis_time_pool }}
+    - '/^pool {{ .name }} {{ .pool_options }}/'
     {{ end }}
     meta:
       server: 1
@@ -30,7 +30,7 @@ file:
     exists: true
     contents:
     {{- range .Vars.deb12cis_time_servers }}
-    - '/^server {{ .name }} {{ .options }}/'
+    - '/^server {{ .name }} {{ .server_options }}/'
     {{ end }}
     meta:
       server: 1

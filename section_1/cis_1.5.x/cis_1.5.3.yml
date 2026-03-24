@@ -4,7 +4,7 @@
   {{ if .Vars.deb12cis_rule_1_5_3 }}
 command:
   system_coredump_conf:
-    title: 1.5.3 | Ensure core dump are restricted
+    title: 1.5.3 | Ensure core dumps are restricted
     exec: grep -Ps -- '^\h*\*\h+hard\h+core\h+0\b' /etc/security/limits.conf /etc/security/limits.d/*
     exit-status:
       or:
@@ -25,7 +25,7 @@ command:
       NIST800-53R5: CM-6
 kernel-param:
   fs.suid_dumpable_sysctl:
-    title: 1.5.3 | Ensure core dump are restricted
+    title: 1.5.3 | Ensure core dumps are restricted
     value: '0'
     name: fs.suid_dumpable
     meta:

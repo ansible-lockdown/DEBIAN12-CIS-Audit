@@ -4,16 +4,11 @@
   {{ if .Vars.deb12cis_rule_5_1_12 }}
 file:
   sshd_KEX:
-    title: 5.1.12 | Ensure sshd Kex algorithms is configured
+    title: 5.1.12 | Ensure sshd KexAlgorithms is configured
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    {{ range .Vars.deb12cis_ssh_strong_kex }}
-    - '/^KexAlgorithms.*{{ . }}/'
-    {{ end }}
-    {{ range .Vars.deb12cis_ssh_weak_kex }}
-    - '!/^KexAlgorithms.*!{{ . }}/'
-    {{ end }}
+    - '/^KexAlgorithms {{ .Vars.deb12cis_sshd_kex_algorithms }}/'
     meta:
       server: 1
       workstation: 1
