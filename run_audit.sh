@@ -87,10 +87,19 @@ fi
 
 # Discover OS version aligning with audit
 # Define os_vendor variable
-if [ "$(uname -a | grep -c amzn)" -ge 1 ]; then
-    os_vendor="AMAZON"
-elif [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
-  os_vendor="RHEL"
+# Use /etc/os-release as primary source (works in containers where uname/hostnamectl may fail)
+if [ -f /etc/os-release ]; then
+  os_id="$(grep -w "^ID=" /etc/os-release | cut -d= -f2 | tr -d '"' | awk '{print tolower($0)}')"
+  case "$os_id" in
+    amzn) os_vendor="AMAZON" ;;
+    rhel|ol|oracle|rocky|almalinux|centos) os_vendor="RHEL" ;;
+    debian) os_vendor="DEBIAN" ;;
+    ubuntu) os_vendor="UBUNTU" ;;
+    sles|opensuse*) os_vendor="SUSE" ;;
+    *) os_vendor="$(echo "$os_id" | awk '{print toupper($0)}')" ;;
+  esac
+elif [ "$(uname -a | grep -c amzn)" -ge 1 ]; then
+  os_vendor="AMAZON"
 else
   os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print toupper($1)}')"
   if [ "${os_vendor}" = "OPENSUSE" ]; then
