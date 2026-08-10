@@ -18,6 +18,10 @@
   - YAML headers added
   - vars/CIS.yml defaults aligned with remediation
   - goss documentation link moved to krameff
+  - run_audit.sh replaced with the current version
+    - goss version discovery fixed for the krameff two line banner
+    - OS discovery replaced by BENCHMARK_OS
+    - AUDIT_BIN_MIN_VER raised to 0.4.8, typos corrected
 
 ## March26
 
