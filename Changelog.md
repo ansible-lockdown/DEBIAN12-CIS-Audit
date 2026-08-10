@@ -22,6 +22,7 @@
     - goss version discovery fixed for the krameff two line banner
     - OS discovery replaced by BENCHMARK_OS
     - AUDIT_BIN_MIN_VER raised to 0.4.8, typos corrected
+  - goss.yml and vars/CIS.yml given YAML document markers
 
 ## March26
 
