@@ -5,7 +5,7 @@
     {{ if .Vars.deb12cis_rule_6_1_2_2}}
 command:
   forward_journald_disabled:
-    title: 6.1.1.2 | Ensure journald log file access is configured
+    title: 6.1.2.2 | Ensure journald ForwardToSyslog is disabled
     exec: grep -i forwardtosyslog /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
     exit-status:
       or:
@@ -18,13 +18,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 6.1.1.2
-      CISv8:
-      - 8.2
-      - 8.9
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      - 6.1.2.2
       NIST800-53R5:
       - AU-2
       - AU-6
