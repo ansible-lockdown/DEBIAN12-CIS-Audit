@@ -25,9 +25,9 @@ deb12cis_level_2: true
 run_heavy_tests: true
 
 #  True is BIOS based system else set to false
-deb12cis_legacy_boot: true
+deb12cis_legacy_boot: false
 
-deb12cis_set_boot_pass: true
+deb12cis_set_boot_pass: false
 
 # Section 1 is Initial setup (FileSystem Configuration, Configure Software Updates, Filesystem Integrity Checking, Secure Boot Settings,
 # Additional Process Hardening, Mandatory Access Control, Command Line Warning Banners, and GNOME Display Manager)
@@ -444,7 +444,7 @@ deb12cis_desktop_required: false
 deb12cis_apparmor_disable: false
 
 # Warning Banner Content (issue, issue.net, motd)
-deb12cis_warning_banner: Authorized uses only. All activity may be monitored and reported.
+deb12cis_warning_banner: Authorized users only. All activity may be monitored and reported.
 # End Banner
 
 # 1.8 Gnome Desktop
@@ -580,9 +580,9 @@ deb12cis_sshd_kex_algorithms: -diffie-hellman-group1-sha1,diffie-hellman-group14
 deb12cis_sshd_config_file: /etc/ssh/sshd_config
 
 ## 5.1.4 Note the following to understand precedence and layout , comma separated
-deb12cis_sshd_allow_users: vagrant
+deb12cis_sshd_allow_users: ""
 deb12cis_sshd_allow_groups:
-deb12cis_sshd_deny_users: nobody
+deb12cis_sshd_deny_users: ""
 deb12cis_sshd_deny_groups:
 
 deb12cis_sshd_client_alive_interval: 15
