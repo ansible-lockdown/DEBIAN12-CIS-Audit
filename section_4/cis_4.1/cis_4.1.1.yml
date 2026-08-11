@@ -15,12 +15,6 @@ file:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
 service:
@@ -34,12 +28,6 @@ service:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
   nftables_stopped:
@@ -52,12 +40,6 @@ service:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
   iptables_stopped:
@@ -70,12 +52,6 @@ service:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
   {{ end }}
@@ -92,12 +68,6 @@ file:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
 service:
@@ -111,12 +81,6 @@ service:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
   nftables_stopped:
@@ -129,12 +93,6 @@ service:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
   iptables_stopped:
@@ -147,12 +105,6 @@ service:
       workstation: 1
       CIS_ID:
       - 4.1.1
-      CISv8:
-      - 4.4
-      - 4.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - NA
     {{ end }}
