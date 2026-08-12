@@ -4,6 +4,17 @@
 
 ## Aug26
 
+- 5.4.2.8 used bash process substitution. Goss runs commands under sh, which is dash on Debian,
+  so the check failed to parse, produced no output and always reported compliant. Rewritten
+  POSIX-safe and verified against a real host
+- 5.4.1.6 used a bash [[ ]] test, so the comparison never fired, and asserted on "Failure" while
+  the script echoes "failure". Both corrected, plus a guard for accounts with no last-change date
+- 2.3.2.1 joined the configured NTP names with no separator, so the pattern only matched when
+  exactly one pool or server was set
+- Added .yamllint so the repo has a working YAML gate, and cleared the issues it surfaced in
+  vars/CIS.yml (sequence indentation, comment spacing, missing trailing newline)
+- 1.6.1, 1.6.2 and 1.6.3 carried an unterminated regex '!/[Ll]inux' which goss treats as a
+  literal substring, so the OS-leak check never fired
 - align_1.1.0 branch
   - 2.1.7: duplicated 2.1.6 ftp content replaced with ldap checks
   - 2.1.15: duplicated 2.1.14 samba content replaced with snmp checks
