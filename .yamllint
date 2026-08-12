@@ -1,0 +1,25 @@
+---
+
+extends: default
+
+rules:
+  # Relax line length for readability in config files
+  line-length:
+    max: 250
+    allow-non-breakable-inline-mappings: true
+
+  # Disable braces check - Goss uses Jinja2 templates with {{ }}
+  braces: disable
+
+  # Allow truthy values commonly used in Ansible/Goss
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
+
+  # Comments indentation can vary with Jinja2 conditionals
+  comments-indentation: disable
+
+# Ignore files with heavy Jinja2 templating that causes false positives
+ignore: |
+  section_*/
+  goss.yml
+  standalone.yml
