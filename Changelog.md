@@ -36,6 +36,7 @@
   - goss.yml and vars/CIS.yml given YAML document markers
   - 6.2.4.3: checked owner not group, stat %U corrected to %G
   - 6.2.4.3: accepts root or adm, matching the benchmark
+  - README updates and updated contributing and contributors
 
 ## March26
 
