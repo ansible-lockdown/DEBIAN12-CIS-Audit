@@ -2,6 +2,12 @@
 
 # 1.1.0 - Initial
 
+## Sep26
+
+- 6.2.3.6 was a placeholder that echoed "Manual" then asserted the output must not contain
+  "Manual", so it could only ever fail and checked nothing. Replaced with conf and running
+  checks on the -k privileged rules, matching 6.2.3.5
+
 ## Aug26
 
 - 5.4.2.8 used bash process substitution. Goss runs commands under sh, which is dash on Debian,
