@@ -14,17 +14,12 @@ file:
     - '!/[Rr]ocky.*/'
     - '!/[Aa]lma.*/'
     - '!/x86_64/'
-    - '!/[Ll]inux'
+    - '!/[Ll]inux/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.6.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-3
@@ -42,18 +37,13 @@ file:
     - '!/[Rr]ocky.*/'
     - '!/[Aa]lma.*/'
     - '!/x86_64/'
-    - '!/[Ll]inux'
+    - '!/[Ll]inux/'
     - '{{ .Vars.deb12cis_warning_banner }}'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.6.2
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
@@ -70,17 +60,12 @@ file:
     - '!/[Rr]ocky.*/'
     - '!/[Aa]lma.*/'
     - '!/x86_64/'
-    - '!/[Ll]inux'
+    - '!/[Ll]inux/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.6.3
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-3
@@ -99,11 +84,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.6.4
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
@@ -121,11 +101,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.6.5
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2
@@ -143,11 +118,6 @@ file:
       workstation: 1
       CIS_ID:
       - 1.6.6
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

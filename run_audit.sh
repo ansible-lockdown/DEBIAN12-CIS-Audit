@@ -21,6 +21,8 @@
 # January 2025  Added Suse OS discovery
 # May 2025      Added formation typos to help and fixed some typos
 # Sept25        Added Additional max concurrent process option
+# June 2026     Changed OS discovery to use BENCHMARK_OS variable to allow for future OS discovery and audit alignment
+# July 2026     Updated goss version discovery
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
@@ -31,7 +33,7 @@ BENCHMARK_OS=DEBIAN12
 
 # Goss host Variables
 AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
-AUDIT_BIN_MIN_VER="0.4.4"
+AUDIT_BIN_MIN_VER="0.4.8"
 AUDIT_FILE="${AUDIT_FILE:-goss.yml}"  # the default goss file used by the audit provided by the audit configuration
 AUDIT_CONTENT_LOCATION="${AUDIT_CONTENT_LOCATION:-/opt}"  # Location of the audit configuration file as available to the OS
 
@@ -79,50 +81,13 @@ done
 
 # check access need to run as root or privileges due to some configuration access
 if [ "$(/usr/bin/id -u)" -ne 0 ]; then
-  echo "Script need to run with root privileges"
+  echo "Script needs to run with root privileges"
   exit 1
 fi
 
 #### Main Script ####
 
-# Discover OS version aligning with audit
-# Define os_vendor variable
-# Use /etc/os-release as primary source (works in containers where uname/hostnamectl may fail)
-if [ -f /etc/os-release ]; then
-  os_id="$(grep "^ID=" /etc/os-release | cut -d= -f2 | tr -d '"' | awk '{print tolower($0)}')"
-  case "$os_id" in
-    amzn) os_vendor="AMAZON" ;;
-    rhel|ol|oracle|rocky|almalinux|centos) os_vendor="RHEL" ;;
-    debian) os_vendor="DEBIAN" ;;
-    ubuntu) os_vendor="UBUNTU" ;;
-    sles|opensuse*) os_vendor="SUSE" ;;
-    *) os_vendor="$(echo "$os_id" | awk '{print toupper($0)}')" ;;
-  esac
-elif [ "$(uname -a | grep -c amzn)" -ge 1 ]; then
-  os_vendor="AMAZON"
-else
-  os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print toupper($1)}')"
-  if [ "${os_vendor}" = "OPENSUSE" ]; then
-   os_vendor="SUSE"
-  fi
-fi
-
-os_maj_ver="$(grep "^VERSION_ID=" /etc/os-release | cut -d= -f2 | tr -d '"' | cut -d '.' -f1)"
-
-# Fallback to BENCHMARK_OS constants if detection produced empty results.
-# This audit is single-OS by design (BENCHMARK_OS hardcoded above); detection
-# is a sanity check, not a load-bearing identifier. Pathological /etc/os-release
-# (missing ID=, missing VERSION_ID=, etc.) must not silently produce wrong paths.
-if [ -z "$os_vendor" ]; then
-  os_vendor="${BENCHMARK_OS//[0-9]/}"
-  echo "WARNING - OS vendor detection produced empty result; falling back to BENCHMARK_OS vendor=${os_vendor}"
-fi
-if [ -z "$os_maj_ver" ]; then
-  os_maj_ver="${BENCHMARK_OS//[A-Za-z]/}"
-  echo "WARNING - OS version detection produced empty result; falling back to BENCHMARK_OS version=${os_maj_ver}"
-fi
-
-audit_content_version=$os_vendor$os_maj_ver-$BENCHMARK-Audit
+audit_content_version=$BENCHMARK_OS-$BENCHMARK-Audit
 audit_content_dir=$AUDIT_CONTENT_LOCATION/$audit_content_version
 audit_vars=vars/${BENCHMARK}.yml
 
@@ -187,12 +152,12 @@ echo
 export FAILURE=0
 if [ -s "${AUDIT_BIN}" ]; then
   echo "OK - Audit binary $AUDIT_BIN is available"
-  goss_installed_version="$($AUDIT_BIN -v | awk '{print $NF}' | cut -dv -f2)"
+  goss_installed_version="$($AUDIT_BIN -v | awk 'NR==1{print $NF}' | cut -dv -f2)"
   newer_version=$(echo -e "$goss_installed_version\n$AUDIT_BIN_MIN_VER" | sort -V | tail -n 1)
   if [ "$goss_installed_version" = "$newer_version" ] || [ "$goss_installed_version" = "$AUDIT_BIN_MIN_VER" ]; then
     echo "OK - Goss is installed and version is ok ($goss_installed_version >= $AUDIT_BIN_MIN_VER)"
   else
-    echo "WARNING - Goss installed = ${goss_installed_version}, does not met minimum of ${AUDIT_BIN_MIN_VER}"
+    echo "WARNING - Goss installed = ${goss_installed_version}, does not meet minimum of ${AUDIT_BIN_MIN_VER}"
     export FAILURE=2
   fi
 else
