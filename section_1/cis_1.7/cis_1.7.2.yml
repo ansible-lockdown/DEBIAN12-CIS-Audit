@@ -9,7 +9,7 @@ file:
     exists: true
     contents:
     - '/^user-db:user$/'
-    - '/^system-db:{{ .Vars.deb12cis_dconf_db_name }}$/'
+    - '/^system-db:gdm$/'
     - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults$/'
     meta:
       server: 1
@@ -19,7 +19,7 @@ file:
 command:
   gdm_banner_msg:
     title: 1.7.2 | Ensure GDM login banner is configured | banner settings
-    exec: cat /etc/dconf/db/{{ .Vars.deb12cis_dconf_db_name }}.d/* 2>/dev/null | grep -E '^\s*banner-message-(enable|text)\s*='
+    exec: cat /etc/dconf/db/gdm.d/* 2>/dev/null | grep -E '^\s*banner-message-(enable|text)\s*='
     exit-status: 0
     stdout:
     - '/^banner-message-enable=true$/'

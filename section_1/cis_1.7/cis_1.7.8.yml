@@ -4,13 +4,14 @@
   {{ if .Vars.deb12cis_level_1 }}
     {{ if .Vars.deb12cis_rule_1_7_8 }}
 file:
-  00-media-autorun_never:
+  00-media-autorun:
     title: 1.7.8 | Ensure GDM autorun-never is enabled
-    path: /etc/dconf/db/{ .Vars.deb12cis_dconf_db_name }.d/00-media-autorun
+    path: /etc/dconf/db/{{ .Vars.deb12cis_dconf_db_name }}.d/00-media-autorun
     exists: true
     contents:
-    - '/^[org/gnome/desktop/media-handling]/'
-    - '/^autorun-never=true/'
+    - '/^\[org\/gnome\/desktop\/media-handling\]$/'
+    - '/^autorun-never=true$/'
+    - '!/^autorun-never=false/'
     meta:
       server: 1
       workstation: 1

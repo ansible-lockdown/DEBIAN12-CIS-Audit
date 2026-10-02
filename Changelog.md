@@ -43,6 +43,10 @@
 - LICENSE: company name updated to MindPoint Group - A Quantum Sky Company
 - 6.2.3.6 live rule regex accepts the -S all form auditctl prints
 - 6.3.3 reads the Debian AIDE config path /etc/aide/aide.conf
+- 1.7.2 and 1.7.3 check system-db:gdm and the gdm.d keyfiles
+- 1.7.4 to 1.7.9 dconf paths templated, section headers matched literally
+- 1.7.5, 1.7.7 and 1.7.9 lock tests read every file in the locks directory
+- 1.7.4 checks the user profile
 
 ## Sep26
 

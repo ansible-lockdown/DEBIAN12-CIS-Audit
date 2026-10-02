@@ -10,7 +10,7 @@ command:
     exit-status: 0
     stdout:
     - '/^user-db:user$/'
-    - '/^system-db:{{ .Vars.deb12cis_dconf_db_name }}$/'
+    - '/^system-db:gdm$/'
     - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults$/'
     meta:
       server: 1
@@ -19,7 +19,7 @@ command:
       - 1.7.3
   gdm_disable_user:
     title: 1.7.3 | Ensure GDM disable-user-list option is enabled | disable-user-list setting
-    exec: cat /etc/dconf/db/{{ .Vars.deb12cis_dconf_db_name }}.d/* 2>/dev/null | grep -E '^\s*disable-user-list\s*='
+    exec: cat /etc/dconf/db/gdm.d/* 2>/dev/null | grep -E '^\s*disable-user-list\s*='
     exit-status: 0
     stdout:
     - '/^disable-user-list=true$/'
