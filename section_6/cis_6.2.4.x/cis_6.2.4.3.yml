@@ -3,12 +3,25 @@
 {{ if .Vars.deb12cis_level_2 }}
   {{ if .Vars.deb12cis_rule_6_2_4_3 }}
 command:
-  audit_logfile_owner:
-    title: 6.2.4.3 | Ensure audit log files group owner is configured
-    exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc "%n_%G" $file; done
+  audit_logfile_group_setting:
+    title: 6.2.4.3 | Ensure audit log files group owner is configured | log_group setting
+    exec: grep log_group /etc/audit/audit* | awk '{ print $NF}'
     exit-status: 0
     stdout:
-    - '/.*_(root|adm)$/'
+    - '/^(adm|root)$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.3
+      NIST800-53R5:
+      - AU-3
+  audit_logfile_group:
+    title: 6.2.4.3 | Ensure audit log files group owner is configured | file group
+    exec: d=$(dirname $(grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }')); find $d -maxdepth 1 -type f ! -group root ! -group adm
+    exit-status: 0
+    stdout:
+    - '!/./'
     meta:
       server: 2
       workstation: 2

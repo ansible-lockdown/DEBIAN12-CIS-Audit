@@ -21,7 +21,7 @@ command:
     exec: auditctl -l | grep privileged
     exit-status: 0
     stdout:
-    - '/^-a always,exit -F path=\S+ -F perm=x -F auid>=\d+ -F auid!=-1 -F key=privileged$/'
+    - '/^-a always,exit (-S all )?-F path=\S+ -F perm=x -F auid>=\d+ -F auid!=(-1|unset) -F key=privileged$/'
     meta:
       server: 2
       workstation: 2

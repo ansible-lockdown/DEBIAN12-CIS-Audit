@@ -6,8 +6,13 @@
 command:
   unowned_ungrouped_dirs:
     title: 7.1.12 | Ensure no files or directories without an owner and a group exist
-    exec: df --local -P | awk {'if (NR!=1) print $7'} | xargs -I '{}' find '{}' -xdev {{ .Vars.deb12cis_exclude_unowned_search_path }}
-    exit-status: 0
+    exec: df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev {{ .Vars.deb12cis_exclude_unowned_search_path }} \( -nouser -o -nogroup \)
+    exit-status:
+      or:
+      - 0
+      - 123
+    stderr:
+    - '!/(unknown predicate|invalid|paths must precede)/'
     timeout: {{ .Vars.timeout_ms }}
     stdout:
     - '!/.*/'

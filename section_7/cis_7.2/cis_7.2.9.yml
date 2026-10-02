@@ -6,7 +6,7 @@
 command:
   home_dirs_exist:
     title: 7.2.9 | Ensure local interactive user home directories are configured | exist
-    exec: pwck -r | grep -Ev "journal|ircd" | grep "does not exist"
+    exec: pwck -r | grep -Ev "journal|ircd|/nonexistent" | grep "does not exist"
     timeout: {{ .Vars.timeout_ms }}
     exit-status: 1
     stdout:
@@ -19,7 +19,7 @@ command:
       NIST800-53R5: NA
   home_dirs_owned:
     title: 7.2.9 | Ensure local interactive user home directories are configured | owned
-    exec: "getent passwd | awk -F: '$3 >= 1000 && $3 <= 60000 && $1 != \"ftpd\" {print $1, $6}' | while read user dir; do [ -e \"$dir\" ] && owner=$(stat -L -c \"%U\" \"$dir\" 2>/dev/null) && [ \"$owner\" != \"$user\" ] && echo \"home dir for $user owned by $owner\"; done"
+    exec: "getent passwd | awk -F: '$3 >= 1000 && $3 <= 60000 && $1 != \"ftpd\" {print $1, $6}' | while read user dir; do [ -e \"$dir\" ] && owner=$(stat -L -c \"%U\" \"$dir\" 2>/dev/null) && [ \"$owner\" != \"$user\" ] && echo \"home dir for $user owned by $owner\"; done; true"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
@@ -32,11 +32,11 @@ command:
       NIST800-53R5: NA
   home_dirs_restrict:
     title: 7.2.9 | Ensure local interactive user home directories are configured | permissions
-    exec: "getent passwd | awk -F: '$3 >= 1000 && $3 <= 60000 {print $6}' | xargs -P 4 -I {} stat -c \"%a %n\" {}"
+    exec: "getent passwd | awk -F: '$3 >= 1000 && $3 <= 60000 {print $6}' | while read dir; do [ -d \"$dir\" ] && find \"$dir\" -maxdepth 0 -perm /027; done; true"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:
-    - '/^7(0|5)0\s/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

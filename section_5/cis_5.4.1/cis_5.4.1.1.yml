@@ -24,10 +24,14 @@ command:
       - IA-5
   check_user_expiry:
     title: 5.4.1.1 | Ensure password expiration is configured | check_users
-    exec: "grep -E '^[^:]+:[^!*]' /etc/shadow | cut -d: -f1,5"
+    skip: {{ not .Vars.deb12cis_force_user_maxdays }}
+    exec: |
+      awk -F: '($2~/^\$.+\$/) {if($5 > 365 || $5 < 1) print "FAIL: " $1 " PASS_MAX_DAYS: " $5}' /etc/shadow
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '/^.*:([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[1-5][0-9]|36[0-5])$/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
