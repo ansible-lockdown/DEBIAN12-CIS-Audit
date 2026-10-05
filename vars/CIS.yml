@@ -602,6 +602,10 @@ deb12cis_passwd_complex_option: minclass
 deb12cis_pass_max_days: "365"
 deb12cis_pass_min_days: "1"
 deb12cis_pass_warn_age: "7"
+# per-user checks are skipped unless the role was told to change existing users
+deb12cis_force_user_maxdays: false
+deb12cis_force_user_mindays: false
+deb12cis_force_user_warnage: false
 
 # Section 6
 
@@ -630,4 +634,4 @@ deb12cis_remote_log_queuesize: 1000
 #  6.3
 
 #  Control 7.1.12
-deb12cis_exclude_unowned_search_path: \(! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)
+deb12cis_exclude_unowned_search_path: \( ! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)

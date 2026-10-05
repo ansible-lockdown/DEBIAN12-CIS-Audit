@@ -3,14 +3,14 @@
 {{ if .Vars.deb12cis_desktop_required }}
   {{ if .Vars.deb12cis_level_1 }}
     {{ if .Vars.deb12cis_rule_1_7_5 }}
-file:
-  00-screensaver_lock:
+command:
+  gdm_screensaver_locks:
     title: 1.7.5 | Ensure GDM screen locks cannot be overridden
-    path: /etc/dconf/db/{ .Vars.deb12cis_dconf_db_name }.d/locks/00-screensaver_lock
-    exists: true
-    contents:
-    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
-    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
+    exec: cat /etc/dconf/db/{{ .Vars.deb12cis_dconf_db_name }}.d/locks/* 2>/dev/null
+    exit-status: 0
+    stdout:
+    - '/^\/org\/gnome\/desktop\/session\/idle\-delay$/'
+    - '/^\/org\/gnome\/desktop\/screensaver\/lock\-delay$/'
     meta:
       server: 1
       workstation: 1
